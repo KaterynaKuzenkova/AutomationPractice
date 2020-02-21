@@ -27,7 +27,7 @@ public class DataProviderEmailsChecking {
                 {"testmail.com"},
                 {"test@mailcom"},
                 {"  "},
-                {"null"}
+                {null}
         };
     }
 }

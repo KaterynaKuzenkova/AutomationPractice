@@ -1,10 +1,7 @@
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.util.ArrayList;
 
 public class CheckAssertions {
 
@@ -15,7 +12,7 @@ public class CheckAssertions {
         chromeDriver.get("https://www.youtube.com/");
 
         Assert.assertEquals(chromeDriver.getTitle(), "YouTube");
-        Assert.assertEquals(chromeDriver.getTitle(), "YouTube", "Strings are not matching" );
+        Assert.assertEquals(chromeDriver.getTitle(), "YouTube", "Strings are not matching");
         Assert.assertEquals(chromeDriver.getTitle().startsWith("You"), true);
         Assert.assertTrue(chromeDriver.getTitle().endsWith("ube"));
         Assert.assertTrue(chromeDriver.getTitle().endsWith("Tube"), "Strings are not matching");

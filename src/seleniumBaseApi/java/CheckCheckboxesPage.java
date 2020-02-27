@@ -4,10 +4,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
 public class CheckCheckboxesPage {
     WebDriver driver = new ChromeDriver();
+
+    @AfterClass
+    public void init() {
+        driver.close();
+    }
 
     @Test(dataProvider = "DataForCSSCheckboxPage", dataProviderClass = DataProviderCheckboxesPageChecking.class)
     public void clickAllCheckboxesByCSS(String dataCss) {

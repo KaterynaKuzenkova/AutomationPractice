@@ -4,10 +4,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
 public class Variant2Task1_1Task1_2Grow {
     WebDriver driver = new ChromeDriver();
+
+    @AfterClass
+    public void cleanup() {
+        driver.close();
+    }
 
     @Test(priority = 1)
     public void clickNewsAndCheckHeadlineArticle() {
@@ -19,15 +25,12 @@ public class Variant2Task1_1Task1_2Grow {
                 ("//h3[@class= 'gs-c-promo-heading__title gel-paragon-bold nw-o-link-split__text']"));
         Assert.assertEquals(headlineArticle.getText(), "Countries scramble to respond as virus spreads",
                 "Tittle of article is not matching with adjusted text");
-
-
     }
 
     @Test(priority = 2, dataProvider = "DataForArticleTitles", dataProviderClass = DataProviderCheckOtherArticleTitles.class)
     public void checkOtherArticleTitles(String dataForXpath, String expectedText) {
         WebElement articleTitle = driver.findElement(By.xpath(dataForXpath));
         Assert.assertEquals(articleTitle.getText(), expectedText, "Tittle of article is not matching with adjusted text");
-        driver.close();
     }
 
 }

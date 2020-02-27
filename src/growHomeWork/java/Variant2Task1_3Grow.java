@@ -3,10 +3,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
 public class Variant2Task1_3Grow {
     WebDriver driver = new ChromeDriver();
+
+    @AfterClass
+    public void cleanup() {
+        driver.close();
+    }
 
     @Test
     public void storeCategorytextAndSearchIt() {
@@ -24,7 +30,6 @@ public class Variant2Task1_3Grow {
                 ("//*[@id=\"search-content\"]/ol/li[1]/article/div/h1/a"));
         Assert.assertEquals(articleTittle.getText(), "World's End: World's End",
                 "Tittle of article is not matching with adjusted text");
-        driver.close();
 
     }
 }

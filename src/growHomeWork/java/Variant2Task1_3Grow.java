@@ -24,6 +24,7 @@ public class Variant2Task1_3Grow {
                 ("//*[@id=\"search-content\"]/ol/li[1]/article/div/h1/a"));
         Assert.assertEquals(articleTittle.getText(), "World's End: World's End",
                 "Tittle of article is not matching with adjusted text");
+        driver.close();
 
     }
 }

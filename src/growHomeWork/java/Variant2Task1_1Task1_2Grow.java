@@ -27,6 +27,7 @@ public class Variant2Task1_1Task1_2Grow {
     public void checkOtherArticleTitles(String dataForXpath, String expectedText) {
         WebElement articleTitle = driver.findElement(By.xpath(dataForXpath));
         Assert.assertEquals(articleTitle.getText(), expectedText, "Tittle of article is not matching with adjusted text");
+        driver.close();
     }
 
 }

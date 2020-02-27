@@ -5,13 +5,19 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class CheckCheckboxesPage {
-    WebDriver driver = new ChromeDriver();
+    WebDriver driver;
+
+    @BeforeClass
+    public void init() {
+        driver = new ChromeDriver();
+    }
 
     @AfterClass
-    public void init() {
+    public void cleanUp() {
         driver.close();
     }
 

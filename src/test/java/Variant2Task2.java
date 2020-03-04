@@ -8,11 +8,12 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class Variant2Task2 {
-    WebDriver driver;
+    private WebDriver driver;
 
     @BeforeMethod
-    public void setUp() throws InterruptedException {
+    public void setUp() {
         driver = new ChromeDriver();
+        driver.get("https://www.bbc.com/");
     }
 
     @AfterMethod
@@ -22,9 +23,7 @@ public class Variant2Task2 {
 
     @Test(priority = 1)
     public void verifyIfUserCanSubmitStory() {
-        driver.get("https://www.bbc.com/");
-        WebElement news = driver.findElement(By.xpath("//*[@id=\"orb-nav-links\"]/ul/li[2]/a"));
-        news.click();
+        driver.findElement(By.xpath("//*[@id=\"orb-nav-links\"]/ul/li[2]/a")).click();
         String newPage = driver.getWindowHandle();
         WebElement secondMoreDropdown = driver.switchTo().window(newPage).findElement(By.xpath
                 ("//span[@class= 'gel-long-primer gs-u-ph']"));
@@ -35,26 +34,29 @@ public class Variant2Task2 {
         WebElement howToShareWithBBCLink = driver.switchTo().window(nextPage).findElement(By.xpath
                 ("//*[@id=\"index-page\"]/div/div[2]/div[2]/div[3]/div/div[2]/div/a"));
         howToShareWithBBCLink.click();
-        WebElement inputName = driver.switchTo().window(nextPage).findElement(By.cssSelector
-                ("#fullName"));
+
+        WebElement inputName = driver.switchTo().window(nextPage).findElement(By.cssSelector("#fullName"));
         inputName.sendKeys("Vasyl Vasiliev");
+
         WebElement inputEmail = driver.findElement(By.cssSelector("#email"));
         inputEmail.sendKeys("test11@mail.com");
+
         WebElement inputTown = driver.findElement(By.cssSelector("#town"));
         inputTown.sendKeys("Kyiv");
+
         WebElement inputPhone = driver.findElement(By.cssSelector("#phone"));
         inputPhone.sendKeys("38091111234456");
+
         WebElement inputMessage = driver.findElement(By.cssSelector("#message"));
         inputMessage.sendKeys("phasellus vestibulum lorem sed risus ultricies tristique nulla aliquet enim tortor at auctor urna nunc id cursus metus aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci a scelerisque purus semper eget duis at tellus at urna condimentum mattis pellentesque id nibh tortor id aliquet lectus proin nibh nisl condimentum id venenatis a condimentum vitae sapien pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas sed tempus urna et pharetra pharetra massa massa ultricies mi quis hendrerit dolor magna eget est lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus");
+
         WebElement submitButton = driver.findElement(By.cssSelector("#submit"));
-        Assert.assertNotEquals("https://www.bbc.com/news/10725415", driver.getCurrentUrl(), "Didn't navigate to correct webpage");
+        Assert.assertNotEquals("https://www.bbc.com/news/10725415", driver.getCurrentUrl(), "Didn't navigate to correct webPage");
     }
 
     @Test(priority = 2)
     public void verifyIfUserCanSubmitStoryWith200Words() {
-        driver.get("https://www.bbc.com/");
-        WebElement news = driver.findElement(By.xpath("//*[@id=\"orb-nav-links\"]/ul/li[2]/a"));
-        news.click();
+        driver.findElement(By.xpath("//*[@id=\"orb-nav-links\"]/ul/li[2]/a")).click();
         String newPage = driver.getWindowHandle();
         WebElement secondMoreDropdown = driver.switchTo().window(newPage).findElement(By.xpath
                 ("//span[@class= 'gel-long-primer gs-u-ph']"));
@@ -82,9 +84,7 @@ public class Variant2Task2 {
 
     @Test(priority = 3)
     public void verifyIfUserCanSubmitStoryWithEmptyEmail() {
-        driver.get("https://www.bbc.com/");
-        WebElement news = driver.findElement(By.xpath("//*[@id=\"orb-nav-links\"]/ul/li[2]/a"));
-        news.click();
+        driver.findElement(By.xpath("//*[@id=\"orb-nav-links\"]/ul/li[2]/a")).click();
         String newPage = driver.getWindowHandle();
         WebElement secondMoreDropdown = driver.switchTo().window(newPage).findElement(By.xpath
                 ("//span[@class= 'gel-long-primer gs-u-ph']"));
@@ -112,9 +112,7 @@ public class Variant2Task2 {
 
     @Test(priority = 4)
     public void verifyIfUserCanSubmitStoryWithEmptyMessage() {
-        driver.get("https://www.bbc.com/");
-        WebElement news = driver.findElement(By.xpath("//*[@id=\"orb-nav-links\"]/ul/li[2]/a"));
-        news.click();
+       driver.findElement(By.xpath("//*[@id=\"orb-nav-links\"]/ul/li[2]/a")).click();
         String newPage = driver.getWindowHandle();
         WebElement secondMoreDropdown = driver.switchTo().window(newPage).findElement(By.xpath
                 ("//span[@class= 'gel-long-primer gs-u-ph']"));

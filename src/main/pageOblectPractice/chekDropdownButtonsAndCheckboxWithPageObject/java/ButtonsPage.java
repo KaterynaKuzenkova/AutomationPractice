@@ -3,7 +3,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class ButtonsPage extends PageObject {
-    @FindBy(xpath = "//*[@class='btn btn-lg btn-primary']")
+    @FindBy(xpath = "/html/body/div/form/div[1]/div/div/button[1]")
     private WebElement firstButton;
 
     @FindBy(xpath = "//*[@class='btn btn-lg btn-success']")
@@ -36,6 +36,9 @@ public class ButtonsPage extends PageObject {
     @FindBy(xpath = "//button[contains(text(),'2')]")
     private WebElement eleventhButton;
 
+    @FindBy(id = "btnGroupDrop1")
+    private WebElement dropdown;
+
     @FindBy(xpath = "//*[contains(text(), 'Dropdown link 1')]")
     private WebElement dropdownLink1;
 
@@ -45,9 +48,20 @@ public class ButtonsPage extends PageObject {
     public ButtonsPage(WebDriver driver) {
         super(driver);
     }
-        public boolean isInitialized() {
-            return firstButton.isDisplayed();
 
+    public boolean isInitialized() {
+        return firstButton.isDisplayed() &&
+                secondButton.isDisplayed() &&
+                thirdButton.isDisplayed() &&
+                fourthButton.isDisplayed() &&
+                fifthButton.isDisplayed() &&
+                sixthButton.isDisplayed() &&
+                seventhButton.isDisplayed() &&
+                eightButton.isDisplayed() &&
+                ninthButton.isDisplayed() &&
+                tenthButton.isDisplayed() &&
+                eleventhButton.isDisplayed() &&
+                dropdown.isDisplayed();
     }
 
     public void clickFirstButton() {
@@ -64,30 +78,26 @@ public class ButtonsPage extends PageObject {
 
     public void clickFourthButton() {
         this.fourthButton.click();
-
     }
 
     public void clickFifthButton() {
         this.fifthButton.click();
-
     }
 
     public void clickSixthButton() {
         this.sixthButton.click();
-
     }
 
     public void clickSeventhButton() {
         this.seventhButton.click();
-
     }
 
     public void clickEightButton() {
         this.eightButton.click();
+    }
 
-    }public void clickNinthButton() {
+    public void clickNinthButton() {
         this.ninthButton.click();
-
     }
 
     public void clickTenthButton() {
@@ -99,12 +109,12 @@ public class ButtonsPage extends PageObject {
     }
 
     public void clickDropdownLink1() {
+        this.dropdown.click();
         this.dropdownLink1.click();
     }
 
     public void clickDropdownLink2() {
+        this.dropdown.click();
         this.dropdownLink2.click();
-
-
     }
 }

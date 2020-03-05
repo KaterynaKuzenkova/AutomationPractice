@@ -1,15 +1,8 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.Wait;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
-
-import java.util.List;
+import org.testng.Assert;
+import org.testng.annotations.*;
 
 public class checkDropdownPage {
     private WebDriver driver;
@@ -23,27 +16,46 @@ public class checkDropdownPage {
     public void cleanUp() {
         driver.quit();
     }
-    @DataProvider(name = "DataForDropdownLoop")
+
+    @BeforeMethod
+    public void clickDropdownButton() {
+        driver.get("https://formy-project.herokuapp.com/dropdown");
+        driver.findElement(By.xpath("//*[@class='btn btn-primary dropdown-toggle']")).click();
+    }
+
+    @AfterMethod
+    public void goBack() {
+        driver.navigate().back();
+    }
+
+    @DataProvider(name = "DataProviderForDropdownLoop")
     public static Object[][] dataForDropdownLoop() {
         return new Object[][]{
-                {""},
-                {"//*[@id ='checkbox-2']"},
-                {"//*[@id ='checkbox-3']"}
+                {"//*[contains(text(), 'Autocomplete')]", "https://formy-project.herokuapp.com/autocomplete"},
+                {"//*[contains(text(), 'Buttons')]", "https://formy-project.herokuapp.com/buttons"},
+                {"//*[contains(text(), 'Checkbox')]", "https://formy-project.herokuapp.com/checkbox"},
+                {"//*[contains(text(), 'Datepicker')]", "https://formy-project.herokuapp.com/datepicker"},
+                {"//*[contains(text(), 'Drag and Drop')]", "https://formy-project.herokuapp.com/dragdrop"},
+                {"//*[contains(text(), 'Dropdown')]", "https://formy-project.herokuapp.com/dropdown"},
+                {"//*[contains(text(), 'Enabled and disabled elements')]", "https://formy-project.herokuapp.com/enabled"},
+                {"//*[contains(text(), 'File Upload')]", "https://formy-project.herokuapp.com/fileupload"},
+                {"//*[contains(text(), 'File Download')]", "https://formy-project.herokuapp.com/filedownload"},
+                {"//*[contains(text(), 'Key and Mouse Press')]", "https://formy-project.herokuapp.com/keypress"},
+                {"//*[contains(text(), 'Modal')]", "https://formy-project.herokuapp.com/modal"},
+                {"//*[contains(text(), 'Page Scroll')]", "https://formy-project.herokuapp.com/scroll"},
+                {"//*[contains(text(), 'Radio Button')]", "https://formy-project.herokuapp.com/radiobutton"},
+                {"//*[contains(text(), 'Switch Window')]", "https://formy-project.herokuapp.com/switch-window"},
+                {"//*[contains(text(), 'Complete Web Form')]", "https://formy-project.herokuapp.com/form"}
         };
-    @Test
-    public void checkAllDropdownLinks() throws InterruptedException {
-        driver.get("https://formy-project.herokuapp.com/dropdown");
-        for(int i=1; i <=15; i++  ){
-            driver.findElement(By.id("dropdownMenuButton")).click();
-            driver.wait(500);
-
-        }
-
-        int quantity = 15;
-        for (int i = 1; i <= quantity; i++){
-
-        }
     }
 
+    @Test(dataProvider = "DataProviderForDropdownLoop")
+    public void checkAllDropdownLinks(String xPathDataForInput, String expectedUrl) {
+        driver.findElement(By.xpath(xPathDataForInput)).click();
+        String newPage = driver.getWindowHandle();
+        WebDriver pageUrl = driver.switchTo().window(newPage);
+        Assert.assertEquals(expectedUrl, pageUrl.getCurrentUrl(), "URLs are not matching");
     }
+}
+
 

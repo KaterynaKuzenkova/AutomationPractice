@@ -10,6 +10,18 @@ public class checkDropdownPage {
     @BeforeClass
     public void init() {
         driver = new ChromeDriver();
+        driver.manage().window().maximize();
+    }
+
+    @BeforeMethod
+    public void clickDropdownButton() {
+        driver.get("https://formy-project.herokuapp.com/dropdown");
+        driver.findElement(By.xpath("//button[@class='btn btn-primary dropdown-toggle']")).click();
+    }
+
+    @AfterMethod
+    public void goBackToDropdownButtonPage() {
+        driver.navigate().back();
     }
 
     @AfterClass
@@ -17,44 +29,33 @@ public class checkDropdownPage {
         driver.quit();
     }
 
-    @BeforeMethod
-    public void clickDropdownButton() {
-        driver.get("https://formy-project.herokuapp.com/dropdown");
-        driver.findElement(By.xpath("//*[@class='btn btn-primary dropdown-toggle']")).click();
-    }
-
-    @AfterMethod
-    public void goBack() {
-        driver.navigate().back();
-    }
-
-    @DataProvider(name = "DataProviderForDropdownLoop")
-    public static Object[][] dataForDropdownLoop() {
+    @DataProvider
+    public static Object[][] dataProviderForDropdownXpath() {
         return new Object[][]{
-                {"//*[contains(text(), 'Autocomplete')]", "https://formy-project.herokuapp.com/autocomplete"},
-                {"//*[contains(text(), 'Buttons')]", "https://formy-project.herokuapp.com/buttons"},
-                {"//*[contains(text(), 'Checkbox')]", "https://formy-project.herokuapp.com/checkbox"},
-                {"//*[contains(text(), 'Datepicker')]", "https://formy-project.herokuapp.com/datepicker"},
-                {"//*[contains(text(), 'Drag and Drop')]", "https://formy-project.herokuapp.com/dragdrop"},
-                {"//*[contains(text(), 'Dropdown')]", "https://formy-project.herokuapp.com/dropdown"},
-                {"//*[contains(text(), 'Enabled and disabled elements')]", "https://formy-project.herokuapp.com/enabled"},
-                {"//*[contains(text(), 'File Upload')]", "https://formy-project.herokuapp.com/fileupload"},
-                {"//*[contains(text(), 'File Download')]", "https://formy-project.herokuapp.com/filedownload"},
-                {"//*[contains(text(), 'Key and Mouse Press')]", "https://formy-project.herokuapp.com/keypress"},
-                {"//*[contains(text(), 'Modal')]", "https://formy-project.herokuapp.com/modal"},
-                {"//*[contains(text(), 'Page Scroll')]", "https://formy-project.herokuapp.com/scroll"},
-                {"//*[contains(text(), 'Radio Button')]", "https://formy-project.herokuapp.com/radiobutton"},
-                {"//*[contains(text(), 'Switch Window')]", "https://formy-project.herokuapp.com/switch-window"},
-                {"//*[contains(text(), 'Complete Web Form')]", "https://formy-project.herokuapp.com/form"}
+                {"1", "autocomplete"},
+                {"2", "buttons"},
+                {"3", "checkbox"},
+                {"4", "datepicker"},
+                {"5", "dragdrop"},
+                {"6", "dropdown"},
+                {"7", "enabled"},
+                {"8", "fileupload"},
+                {"9", "filedownload"},
+                {"10", "keypress"},
+                {"11", "modal"},
+                {"12", "scroll"},
+                {"13", "radiobutton"},
+                {"14", "switch-window"},
+                {"15", "form"}
         };
     }
 
-    @Test(dataProvider = "DataProviderForDropdownLoop")
-    public void checkAllDropdownLinks(String xPathDataForInput, String expectedUrl) {
-        driver.findElement(By.xpath(xPathDataForInput)).click();
+    @Test(dataProvider = "dataProviderForDropdownXpath")
+    public void checkAllDropdownLinks(String i, String urlName) {
+        driver.findElement(By.xpath("html/body/div/div/div/a["+i+"]")).click();
         String newPage = driver.getWindowHandle();
-        WebDriver pageUrl = driver.switchTo().window(newPage);
-        Assert.assertEquals(expectedUrl, pageUrl.getCurrentUrl(), "URLs are not matching");
+       driver.navigate().refresh();
+        Assert.assertEquals(driver.getCurrentUrl(), "https://formy-project.herokuapp.com/"+ urlName, "URLs are not matching");
     }
 }
 

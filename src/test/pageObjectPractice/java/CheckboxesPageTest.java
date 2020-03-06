@@ -1,9 +1,9 @@
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class CheckboxesPageTest extends FunctionalTest{
-    @DataProvider(name = "DataForCSSCheckboxPage")
+public class CheckboxesPageTest extends FunctionalTestNG {
+
+    @DataProvider
     public static Object[][] dataForCSS() {
         return new Object[][]{
                 {"#checkbox-1"},
@@ -12,7 +12,7 @@ public class CheckboxesPageTest extends FunctionalTest{
         };
     }
 
-    @DataProvider(name = "DataForXpathCheckboxPage")
+    @DataProvider
     public static Object[][] dataForXPath() {
         return new Object[][]{
                 {"//*[@id ='checkbox-1']"},
@@ -20,15 +20,18 @@ public class CheckboxesPageTest extends FunctionalTest{
                 {"//*[@id ='checkbox-3']"}
         };
     }
-    @Test(dataProvider = "DataForCSSCheckboxPage")
-    public void clickAllCheckboxesByCss(String dataSCCSelector){
+
+    @Test(dataProvider = "dataForCSS")
+    public void clickAllCheckboxesByCss(String dataSCCSelector) {
+
         driver.get("https://formy-project.herokuapp.com/checkbox");
         CheckboxesPage checkboxesPage = new CheckboxesPage(driver);
         checkboxesPage.clickAllCheckboxesByCSS(dataSCCSelector);
 
     }
-    @Test(dataProvider = "DataForXpathCheckboxPage")
-    public void clickAllCheckboxesByXpath(String dataXPathSelector){
+
+    @Test(dataProvider = "dataForXPath")
+    public void clickAllCheckboxesByXpath(String dataXPathSelector) {
         driver.get("https://formy-project.herokuapp.com/checkbox");
         CheckboxesPage checkboxesPage = new CheckboxesPage(driver);
         checkboxesPage.clickAllCheckboxesByXPath(dataXPathSelector);

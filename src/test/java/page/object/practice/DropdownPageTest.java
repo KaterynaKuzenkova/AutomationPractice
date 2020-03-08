@@ -2,6 +2,7 @@ package page.object.practice;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import page.object.pages.DropdownPage;
 
 public class DropdownPageTest extends FunctionalTestNGDropdownPage {
 

@@ -1,6 +1,7 @@
 package page.object.practice;
 
 import org.junit.Test;
+import page.object.pages.ButtonsPage;
 
 import static org.junit.Assert.assertTrue;
 

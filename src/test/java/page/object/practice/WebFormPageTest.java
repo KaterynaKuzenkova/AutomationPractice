@@ -1,4 +1,8 @@
+package page.object.practice;
+
 import org.junit.Test;
+import page.object.pages.ReceiptPageFromWebForm;
+import page.object.pages.WebFormPage;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -6,8 +10,8 @@ import static org.junit.Assert.assertTrue;
 public class WebFormPageTest extends FunctionalTest {
     @Test
     public void fillTheForm() {
-       driver.get("https://formy-project.herokuapp.com/form");
-      WebFormPage webFormPage = new WebFormPage(driver);
+        FunctionalTest.driver.get("https://formy-project.herokuapp.com/form");
+        WebFormPage webFormPage = new WebFormPage(FunctionalTest.driver);
         assertTrue(webFormPage.isInitialized());
         webFormPage.enterName("John", "Johnson");
         webFormPage.enterJobTittle("Software Engineer");

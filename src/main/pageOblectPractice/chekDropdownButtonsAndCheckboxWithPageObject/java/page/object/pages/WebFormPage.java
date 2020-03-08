@@ -1,7 +1,10 @@
+package page.object.pages;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
+import page.object.practice.PageObject;
 
 public class WebFormPage extends PageObject {
 
@@ -33,6 +36,7 @@ public class WebFormPage extends PageObject {
     @FindBy(xpath = "//*[@role='button']")
 
     private WebElement submitButton;
+
     public boolean isInitialized() {
         return firstName.isDisplayed();
     }
@@ -44,24 +48,30 @@ public class WebFormPage extends PageObject {
         this.lastName.clear();
         this.lastName.sendKeys(lastName);
     }
+
     public void enterJobTittle(String jobTittle){
         this.jobTittle.clear();
         this.jobTittle.sendKeys(jobTittle);
     }
+
     public void selectLevelOfEducation(){
-       this.highSchoolButton.click();
+        this.highSchoolButton.click();
     }
+
     public void chooseSex(){
         this.manCheckbox.click();
     }
+
     public void choseYearsOfExperience(){
         WebElement selector = this.selector;
         Select dropdown = new Select(selector);
         dropdown.selectByValue("2");
     }
+
     public void enterDate(String date){
         this.calendar.sendKeys(date);
     }
+
     public ReceiptPageFromWebForm submit() {
         submitButton.click();
         return new ReceiptPageFromWebForm(driver);

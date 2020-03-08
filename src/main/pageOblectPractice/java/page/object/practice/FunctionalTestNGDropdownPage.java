@@ -1,3 +1,5 @@
+package page.object.practice;
+
 import org.junit.After;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

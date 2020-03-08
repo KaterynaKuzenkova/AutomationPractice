@@ -1,3 +1,5 @@
+package page.object.practice;
+
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
@@ -6,8 +8,8 @@ public class ButtonsPageTest extends FunctionalTest {
 
     @Test
     public void clickAllButtons() {
-        driver.get("https://formy-project.herokuapp.com/buttons");
-        ButtonsPage buttonsPage = new ButtonsPage(driver);
+        FunctionalTest.driver.get("https://formy-project.herokuapp.com/buttons");
+        ButtonsPage buttonsPage = new ButtonsPage(FunctionalTest.driver);
 
         assertTrue(buttonsPage.isInitialized());
 

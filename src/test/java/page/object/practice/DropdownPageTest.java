@@ -1,3 +1,5 @@
+package page.object.practice;
+
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -23,9 +25,10 @@ public class DropdownPageTest extends FunctionalTestNGDropdownPage {
                 {"15", "form"}
         };
     }
+
     @Test(dataProvider  = "dataProviderForDropdownXpath")
     public void checkAllDropdownLinks(String i, String urlName ){
-     DropdownPage dropdownPage = new DropdownPage(driver);
-     dropdownPage.checkAllDropdownLinks(i, urlName);
+        DropdownPage dropdownPage = new DropdownPage(FunctionalTestNGDropdownPage.driver);
+        dropdownPage.checkAllDropdownLinks(i, urlName);
     }
 }

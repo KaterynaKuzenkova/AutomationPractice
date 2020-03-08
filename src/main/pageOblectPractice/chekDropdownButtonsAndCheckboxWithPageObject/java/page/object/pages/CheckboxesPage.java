@@ -1,12 +1,16 @@
+package page.object.pages;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import page.object.practice.PageObject;
 
 public class CheckboxesPage extends PageObject {
 
     public CheckboxesPage(WebDriver driver) {
         super(driver);
     }
+
     public void clickAllCheckboxesByCSS(String dataCssSelector) {
         WebElement checkBox = driver.findElement(By.cssSelector(dataCssSelector));
         driver.findElement(By.cssSelector(dataCssSelector));

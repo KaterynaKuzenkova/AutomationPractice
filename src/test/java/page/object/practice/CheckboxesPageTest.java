@@ -1,5 +1,8 @@
+package page.object.practice;
+
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import page.object.pages.CheckboxesPage;
 
 public class CheckboxesPageTest extends FunctionalTestNG {
 
@@ -24,16 +27,16 @@ public class CheckboxesPageTest extends FunctionalTestNG {
     @Test(dataProvider = "dataForCSS")
     public void clickAllCheckboxesByCss(String dataSCCSelector) {
 
-        driver.get("https://formy-project.herokuapp.com/checkbox");
-        CheckboxesPage checkboxesPage = new CheckboxesPage(driver);
+        FunctionalTestNG.driver.get("https://formy-project.herokuapp.com/checkbox");
+        CheckboxesPage checkboxesPage = new CheckboxesPage(FunctionalTestNG.driver);
         checkboxesPage.clickAllCheckboxesByCSS(dataSCCSelector);
 
     }
 
     @Test(dataProvider = "dataForXPath")
     public void clickAllCheckboxesByXpath(String dataXPathSelector) {
-        driver.get("https://formy-project.herokuapp.com/checkbox");
-        CheckboxesPage checkboxesPage = new CheckboxesPage(driver);
+        FunctionalTestNG.driver.get("https://formy-project.herokuapp.com/checkbox");
+        CheckboxesPage checkboxesPage = new CheckboxesPage(FunctionalTestNG.driver);
         checkboxesPage.clickAllCheckboxesByXPath(dataXPathSelector);
     }
 }

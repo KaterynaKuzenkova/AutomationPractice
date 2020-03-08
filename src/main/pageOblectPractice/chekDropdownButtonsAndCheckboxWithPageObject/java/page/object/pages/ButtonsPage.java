@@ -1,6 +1,9 @@
+package page.object.pages;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import page.object.practice.PageObject;
 
 public class ButtonsPage extends PageObject {
     @FindBy(xpath = "/html/body/div/form/div[1]/div/div/button[1]")
